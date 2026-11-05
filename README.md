@@ -6,6 +6,8 @@ habitação muda de cor, um aviso aparece, o alerta entra no histórico e, mais 
 
 Projeto de UX/UI e front-end, criado por **Murilo de Melo Sousa** (Projeto Selene · FIAP).
 
+**Demonstração online: [selene-op70.onrender.com](https://selene-op70.onrender.com)**
+
 > Projeto fictício, feito para fins de estudo. Todos os dados são simulados.
 
 <!-- Para o GitHub: adicione um print da home em docs/preview.png e descomente a linha abaixo.
@@ -35,24 +37,6 @@ Projeto de UX/UI e front-end, criado por **Murilo de Melo Sousa** (Projeto Selen
 | **Alimentos** | Reserva total, produção agrícola, consumo diário, autonomia e cultivos ativos do Módulo C |
 | **Alertas** | Feed de eventos com filtros (todos, críticos, atenção, informativos) e estado ATIVO / RESOLVIDO |
 | **Satélites** | SAT-142 a SAT-145: órbita, altitude, latência, sinal, pacotes, taxa de erro, uplink/downlink e log de comunicações |
-
-## Como executar
-
-Não há dependências para instalar nem etapa de build.
-
-```bash
-# opção 1: abrir direto
-# dê dois cliques em index.html
-
-# opção 2: servidor local
-python3 -m http.server 8000
-# acesse http://localhost:8000
-```
-
-Os ícones (Font Awesome) e as fontes (Google Fonts) são carregados por CDN, então é preciso estar online para vê-los.
-O restante funciona offline.
-
-A sequência de boot roda uma vez por sessão do navegador. Qualquer tecla ou clique a pula.
 
 ## Demonstração pelo console
 
@@ -176,4 +160,8 @@ cada módulo da home é o pior estado entre as métricas que o compõem.
 
 ## Tecnologias
 
-HTML5 · CSS3 (Grid, Flexbox, variáveis) · JavaScript (ES6+) · Canvas 2D · Font Awesome 6 · Google Font · Figma · Claude
+HTML5 · CSS3 (Grid, Flexbox, variáveis) · JavaScript (ES6+) · Canvas 2D · Font Awesome 6 · Google Fonts · Figma · Claude
+
+## Autor
+
+**Murilo de Melo Sousa** · estudante de Web Design (FIAP) e técnico em Desenvolvimento de Sistemas (SENAI).
