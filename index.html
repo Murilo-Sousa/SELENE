@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SELENE: painel de monitoramento de uma colônia lunar fictícia. Projeto de UX/UI e front-end.">
+    <meta name="theme-color" content="#000000">
+    <title>SELENE - Painel Principal</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="effects.css">
+</head>
+<body data-page="home" data-root="">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="logo">SELENE</h1>
+            <span class="page-info">VISÃO GERAL /// PAINEL PRINCIPAL</span>
+        </div>
+        <div class="topbar-right">
+            <span class="station">SOL-142</span>
+            <span class="dot"></span>
+            <span id="currentTime">00:00:00</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="content-row">
+
+            <!-- Câmeras da base (troca com transição; legenda, REC e timestamp) -->
+            <div class="image-box camera" id="camera" role="img" aria-label="Transmissão das câmeras da base">
+                <div class="cam-layer on" id="camA"></div>
+                <div class="cam-layer" id="camB"></div>
+                <div class="cam-hud" aria-hidden="true">
+                    <div class="cam-top">
+                        <span id="camName">CAM-01 · ECLUSA PRINCIPAL</span>
+                        <span class="cam-rec"><i></i>REC</span>
+                    </div>
+                    <div class="cam-bottom">
+                        <span id="camTs">--:--:--</span>
+                        <span>SOL-142 · SETOR A</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-column">
+                <div class="info-box" data-state-of="energy.useState">
+                    <div class="box-header">
+                        <i class="fa-solid fa-chart-line chart-icon" aria-hidden="true"></i>
+                        <div class="box-title">CONSUMO · ÚLTIMAS 7 LEITURAS · KW</div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="energyChart" role="img" aria-label="Gráfico de linha do consumo de energia em kW nas últimas sete leituras"></canvas>
+                    </div>
+                </div>
+                <div class="info-box" data-state-of="atmos.kpa.state">
+                    <div class="box-header">
+                        <i class="fa-solid fa-chart-column chart-icon" aria-hidden="true"></i>
+                        <div class="box-title">PRESSÃO ATMOSFÉRICA · KPA</div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="pressureChart" role="img" aria-label="Gráfico de barras da pressão atmosférica em kPa nas últimas sete leituras"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-list panel-icon" aria-hidden="true"></i>
+                    <div class="panel-title">STATUS DOS MÓDULOS</div>
+                </div>
+                <div class="modules-list">
+                    <div class="module-row" data-state-of="mods.0.state">
+                        <span class="module-id">MOD - A</span>
+                        <span class="module-name">HABITAÇÃO</span>
+                        <span class="module-status" data-status="mods.0.state">NORMAL</span>
+                    </div>
+                    <div class="module-row" data-state-of="mods.1.state">
+                        <span class="module-id">MOD - B</span>
+                        <span class="module-name">PESQUISA</span>
+                        <span class="module-status" data-status="mods.1.state">NORMAL</span>
+                    </div>
+                    <div class="module-row" data-state-of="mods.2.state">
+                        <span class="module-id">MOD - C</span>
+                        <span class="module-name">AGRICULTURA</span>
+                        <span class="module-status" data-status="mods.2.state">ATENÇÃO</span>
+                    </div>
+                    <div class="module-row" data-state-of="mods.3.state">
+                        <span class="module-id">MOD - D</span>
+                        <span class="module-name">ARMAZENAMENTO</span>
+                        <span class="module-status" data-status="mods.3.state">NORMAL</span>
+                    </div>
+                    <div class="module-row" data-state-of="mods.4.state">
+                        <span class="module-id">MOD - E</span>
+                        <span class="module-name">ENERGIA</span>
+                        <span class="module-status" data-status="mods.4.state">NORMAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-grid">
+            <div class="square-box energy-card" data-state-of="energy.solar.state">
+                <div class="energy-header">
+                    <i class="fa-regular fa-sun energy-icon" aria-hidden="true"></i>
+                    <div class="energy-title-group">
+                        <div class="energy-title">ENERGIA SOLAR</div>
+                        <div class="energy-trend"><i class="fa-solid fa-caret-up" data-caret="energy.solar.vsYesterday" aria-hidden="true"></i> <span data-bind="energy.solar.vsYesterday" data-fmt="sign0" data-suffix="% VS ONTEM">+12% VS ONTEM</span></div>
+                    </div>
+                </div>
+                <div class="energy-value" data-bind="energy.solar.out" data-fmt="int" data-tick>847</div>
+                <div class="energy-unit">KW • PRODUÇÃO ATUAL</div>
+                <div class="energy-footer">
+                    <div class="capacity-row"><span>CAPACIDADE</span><span data-bind="energy.solar.pct" data-fmt="pct">72%</span></div>
+                    <div class="capacity-bar"><div class="capacity-fill" data-bar="energy.solar.pct"></div></div>
+                </div>
+            </div>
+
+            <div class="square-box energy-card water-card" data-state-of="water.state">
+                <div class="energy-header">
+                    <i class="fa-solid fa-droplet energy-icon" aria-hidden="true"></i>
+                    <div class="energy-title-group">
+                        <div class="energy-title">ÁGUA</div>
+                        <div class="energy-trend"><i class="fa-solid fa-caret-up" data-caret="water.weekPct" aria-hidden="true"></i> <span data-bind="water.weekPct" data-fmt="sign0" data-suffix="% ESTA SEMANA">+3% ESTA SEMANA</span></div>
+                    </div>
+                </div>
+                <div class="energy-value" data-bind="water.pct" data-fmt="int" data-tick>30</div>
+                <div class="energy-unit">% RESERVA · <span data-bind="water.l" data-fmt="int">1.120</span>L</div>
+                <div class="energy-footer">
+                    <div class="capacity-row"><span>RESERVA</span><span data-status="water.state">CRÍTICO</span></div>
+                    <div class="capacity-bar"><div class="water-fill" data-bar="water.pct"></div></div>
+                </div>
+            </div>
+
+            <div class="square-box energy-card oxygen-card" data-state-of="atmos.o2.state">
+                <div class="energy-header">
+                    <i class="fa-solid fa-wind energy-icon" aria-hidden="true"></i>
+                    <div class="energy-title-group">
+                        <div class="energy-title">OXIGÊNIO</div>
+                        <div class="energy-trend"><i class="fa-solid fa-caret-up" aria-hidden="true"></i> ESTÁVEL HÁ 72H</div>
+                    </div>
+                </div>
+                <div class="energy-value" data-bind="atmos.purity" data-fmt="int" data-tick>95</div>
+                <div class="energy-unit">% PUREZA · <span data-bind="atmos.o2.v" data-fmt="d1">21.2</span>% O₂</div>
+                <div class="energy-footer">
+                    <div class="capacity-row"><span>NÍVEL</span><span data-status="atmos.o2.state">NORMAL</span></div>
+                    <div class="capacity-bar"><div class="oxygen-fill" data-bar="atmos.purity"></div></div>
+                </div>
+            </div>
+
+            <div class="square-box energy-card food-card" data-state-of="food.state">
+                <div class="energy-header">
+                    <i class="fa-solid fa-burger energy-icon" aria-hidden="true"></i>
+                    <div class="energy-title-group">
+                        <div class="energy-title">ALIMENTO</div>
+                        <div class="energy-trend"><i class="fa-solid fa-caret-up" aria-hidden="true"></i> COLHEITA EM <span data-bind="food.nextHarvest" data-fmt="int">5</span> DIAS</div>
+                    </div>
+                </div>
+                <div class="energy-value" data-bind="food.autonomy" data-fmt="int" data-tick>64</div>
+                <div class="energy-unit">DIAS DE RESERVA</div>
+                <div class="energy-footer">
+                    <div class="capacity-row"><span>SUFICIÊNCIA</span><span data-bind="food.pct" data-fmt="pct">68%</span></div>
+                    <div class="capacity-bar"><div class="food-fill" data-bar="food.pct"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel-column">
+            <div class="mini-panel temperature-panel" data-state-of="atmos.temp.state">
+                <div class="temperature-header">
+                    <div class="temperature-title">TEMPERATURA INTERNA</div>
+                    <i class="fa-solid fa-temperature-half temperature-icon" aria-hidden="true"></i>
+                </div>
+                <div class="temperature-reading">
+                    <div class="temperature-value"><span data-bind="atmos.temp.v" data-fmt="d1" data-tick>21.5</span>°</div>
+                    <div class="temperature-unit">CELSIUS</div>
+                </div>
+                <div class="temperature-footer">
+                    <div class="temperature-row"><span>AQUECIMENTO</span><span data-bind="atmos.heat" data-fmt="pct">45%</span></div>
+                    <div class="temperature-bar"><div class="temperature-fill" data-bar="atmos.heat"></div></div>
+                </div>
+            </div>
+            <div class="mini-panel link-panel">
+                <div class="temperature-header">
+                    <div class="temperature-title">LINK TERRA-LUA</div>
+                    <i class="fa-solid fa-link temperature-icon" aria-hidden="true"></i>
+                </div>
+                <div class="temperature-reading">
+                    <div class="temperature-value"><span data-bind="sats.latency" data-fmt="d1" data-tick>2.6</span>s</div>
+                    <div class="temperature-unit">LATÊNCIA · SELELINK-3</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+        <div class="nav-group left">
+            <a href="index.html" class="nav-item active" aria-current="page">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                <span>Geral</span>
+            </a>
+            <a href="energia/energia.html" class="nav-item">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                <span>Energia</span>
+            </a>
+            <a href="agua/agua.html" class="nav-item">
+                <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+                <span>Água</span>
+            </a>
+            <a href="atmosfera/atmosfera.html" class="nav-item">
+                <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+                <span>Atmosfera</span>
+            </a>
+            <a href="alimentos/alimentos.html" class="nav-item">
+                <i class="fa-solid fa-burger" aria-hidden="true"></i>
+                <span>Alimentos</span>
+            </a>
+        </div>
+        <div class="nav-group right">
+            <a href="alertas/alertas.html" class="nav-item alert">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                <span>Alertas</span>
+            </a>
+            <a href="satelites/satelites.html" class="nav-item">
+                <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
+                <span>Satélite</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/telemetry.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

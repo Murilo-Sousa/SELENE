@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-green: #4DB04D;
+    --background: #000000;
+}
+
+body {
+    background: var(--background);
+    color: var(--primary-green);
+    min-height: 100vh;
+    font-family: "Geom", sans-serif;
+    overflow-x: hidden;
+}
+
+.topbar {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.logo {
+    font-family: 'Bowlby One', cursive;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--primary-green);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-green);
+}
+
+.main-layout {
+    display: flex;
+    margin-left: 48px;
+    margin-top: 20px;
+    gap: 80px;
+}
+
+.vertical-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.right-content {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    margin-right: 48px;
+    margin-top: 23px;
+}
+
+.squares-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.square-row {
+    display: flex;
+    gap: 25px;
+}
+
+.square {
+    width: 240px;
+    height: 240px;
+    border: 3px solid var(--primary-green);
+    background: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.square-corner {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+.center-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.progress-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.progress-ring svg {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    stroke: #1a3a1a;
+    stroke-width: 6;
+    fill: none;
+}
+
+.progress-ring-fill {
+    stroke: var(--primary-green);
+    stroke-width: 6;
+    fill: none;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.percentage-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.percentage-number {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.percentage-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.square-footer {
+    margin-top: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.rectangles-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex: 1;
+    min-width: 0;
+}
+
+.rectangle {
+    width: 100%;
+    height: 240px;
+    border: 3px solid var(--primary-green);
+    background: transparent;
+    padding: 10px 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-title {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: right;
+    z-index: 10;
+}
+
+.bars-container {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+}
+
+.bar-item {
+    margin-bottom: 0px;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.bar-label-left {
+    display: flex;
+    gap: 10px;
+}
+
+.bar-label-right {
+    display: flex;
+    gap: 10px;
+}
+
+.bar-bg {
+    width: 100%;
+    height: 13px;
+    background-color: #1a3a1a;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: var(--primary-green);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.line-chart-container {
+    margin-top: 35px;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
+.line-chart-container canvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}
+
+.dashboard, .bottom-grid, .right-panel-column, .bottom-nav {
+    display: none;
+}
+
+/* Estilos para os links de navegação vertical */
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+    text-decoration: none;
+}
+
+.nav-vertical-item:hover {
+    text-decoration: none;
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Faixa verde que vem de fora da tela */
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}

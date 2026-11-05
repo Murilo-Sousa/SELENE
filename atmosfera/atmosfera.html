@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>SELENE - Atmosfera</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="atmosfera.css">
+    <link rel="stylesheet" href="../responsive.css">
+    <link rel="stylesheet" href="../effects.css">
+</head>
+<body data-page="atmosfera" data-root="../">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="logo">ATMOSFERA & CONTROLE AMBIENTAL</h1>
+        </div>
+
+        <div class="topbar-right">
+            <span class="station">SOL-142</span>
+            <span class="dot"></span>
+            <span id="currentTime">00:00:00</span>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <nav class="vertical-nav" id="verticalNav" aria-label="Navegação principal">
+            <a href="../index.html" class="nav-vertical-item" data-index="0" aria-label="Geral" title="Geral"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+            <a href="../energia/energia.html" class="nav-vertical-item" data-index="1" aria-label="Energia" title="Energia"><i class="fa-solid fa-bolt" aria-hidden="true"></i></a>
+            <a href="../agua/agua.html" class="nav-vertical-item" data-index="2" aria-label="Água" title="Água"><i class="fa-solid fa-droplet" aria-hidden="true"></i></a>
+            <a href="../atmosfera/atmosfera.html" class="nav-vertical-item active" data-index="3" aria-label="Atmosfera" title="Atmosfera" aria-current="page"><i class="fa-solid fa-cloud" aria-hidden="true"></i></a>
+            <a href="../alimentos/alimentos.html" class="nav-vertical-item" data-index="4" aria-label="Alimentos" title="Alimentos"><i class="fa-solid fa-burger" aria-hidden="true"></i></a>
+            <a href="../alertas/alertas.html" class="nav-vertical-item alert-item" data-index="5" aria-label="Alertas" title="Alertas"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></a>
+            <a href="../satelites/satelites.html" class="nav-vertical-item" data-index="6" aria-label="Satélites" title="Satélites"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></a>
+        </nav>
+
+        <main class="right-content">
+            <div class="squares-container">
+                <div class="square-row">
+                    <div class="square" data-state-of="atmos.o2.state">
+                        <div class="square-title">OXIGÊNIO O₂</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="atmos.o2.v" data-fmt="d1" data-tick>0</span>
+                                <span class="main-unit">%</span>
+                            </div>
+                            <div class="info-row">
+                                <span>CONCENTRAÇÃO ATUAL</span>
+                                <span data-bind="atmos.o2.v" data-fmt="d1" data-suffix="%"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="atmos.o2.bar"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>IDEAL</span>
+                                <span>21.0%</span>
+                            </div>
+                            <div class="info-row">
+                                <span>STATUS</span>
+                                <span data-status="atmos.o2.state">NORMAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="square" data-state-of="atmos.co2.state">
+                        <div class="square-title">DIÓXIDO DE CARBONO CO₂</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="atmos.co2.v" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">PPM</span>
+                            </div>
+                            <div class="info-row">
+                                <span>CONCENTRAÇÃO ATUAL</span>
+                                <span data-bind="atmos.co2.v" data-fmt="int" data-suffix=" PPM"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="atmos.co2.bar"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>LIMITE SEGURO</span>
+                                <span>800 PPM</span>
+                            </div>
+                            <div class="info-row">
+                                <span>STATUS</span>
+                                <span data-status="atmos.co2.state">NORMAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="square" data-state-of="atmos.kpa.state">
+                        <div class="square-title">PRESSÃO</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="atmos.kpa.v" data-fmt="d1" data-tick>0</span>
+                                <span class="main-unit">KPA</span>
+                            </div>
+                            <div class="info-row">
+                                <span>PRESSÃO ATMOSFÉRICA</span>
+                                <span data-bind="atmos.kpa.v" data-fmt="d1" data-suffix=" KPA"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="atmos.kpa.bar"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>IDEAL</span>
+                                <span>101.3 KPA</span>
+                            </div>
+                            <div class="info-row">
+                                <span>STATUS</span>
+                                <span data-status="atmos.kpa.state" data-label-ok="ESTÁVEL">NORMAL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-row">
+                    <div class="square" data-state-of="atmos.rh.state">
+                        <div class="square-title">UMIDADE RELATIVA</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="atmos.rh.v" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">%</span>
+                            </div>
+                            <div class="info-row">
+                                <span>UMIDADE ATUAL</span>
+                                <span data-bind="atmos.rh.v" data-fmt="pct"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="atmos.rh.v"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>IDEAL</span>
+                                <span>45-65%</span>
+                            </div>
+                            <div class="info-row">
+                                <span>STATUS</span>
+                                <span data-status="atmos.rh.state">NORMAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="square">
+                        <div class="square-title">COMPOSIÇÃO ATMOSFÉRICA</div>
+                        <div class="square-content" style="width: 100%;">
+                            <table class="quality-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-parametro">ELEMENTO</th>
+                                        <th class="col-valor">CONCENTRAÇÃO</th>
+                                        <th class="col-status">STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nitrogênio N₂</td>
+                                        <td class="col-valor"><span data-bind="atmos.n2" data-fmt="d1" data-suffix="%"></span></td>
+                                        <td class="col-status"><span class="status-badge" data-status="atmos.n2State">NORMAL</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oxigênio O₂</td>
+                                        <td class="col-valor"><span data-bind="atmos.o2.v" data-fmt="d1" data-suffix="%"></span></td>
+                                        <td class="col-status"><span class="status-badge" data-status="atmos.o2.state">NORMAL</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Argônio Ar</td>
+                                        <td class="col-valor"><span data-bind="atmos.ar" data-fmt="d1" data-suffix="%"></span></td>
+                                        <td class="col-status"><span class="status-badge" data-status="atmos.arState">NORMAL</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CO₂ + Outros</td>
+                                        <td class="col-valor"><span data-bind="atmos.other" data-fmt="d2" data-suffix="%"></span></td>
+                                        <td class="col-status"><span class="status-badge" data-status="atmos.co2.state">NORMAL</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="square" data-state-of="atmos.filt.state">
+                        <div class="square-title">FILTROS E SISTEMAS ATIVO</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="atmos.filt.v" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">%</span>
+                            </div>
+                            <div class="info-row">
+                                <span>EFICIÊNCIA GERAL</span>
+                                <span data-bind="atmos.filt.v" data-fmt="pct"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="atmos.filt.v"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>FILTROS HEPA</span>
+                                <span><span data-bind="atmos.hepa.v" data-fmt="pct"></span> <span data-status="atmos.hepa.state" data-label-ok="ATIVO">ATIVO</span></span>
+                            </div>
+                            <div class="info-row">
+                                <span>SCRUBBERS CO₂</span>
+                                <span data-status="atmos.scrub.state" data-label-ok="ATIVO">ATIVO</span>
+                            </div>
+                            <div class="info-row">
+                                <span>GERADOR O₂</span>
+                                <span data-status="atmos.o2gen.state" data-label-ok="ATIVO">ATIVO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/telemetry.js"></script>
+    <script src="../js/core.js"></script>
+</body>
+</html>

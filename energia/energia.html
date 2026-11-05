@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>SELENE - Energia</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="energia.css">
+    <link rel="stylesheet" href="../responsive.css">
+    <link rel="stylesheet" href="../effects.css">
+</head>
+<body data-page="energia" data-root="../">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="logo">PAINÉIS SOLARES & REATORES</h1>
+        </div>
+
+        <div class="topbar-right">
+            <span class="station">SOL-142</span>
+            <span class="dot"></span>
+            <span id="currentTime">00:00:00</span>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <nav class="vertical-nav" id="verticalNav" aria-label="Navegação principal">
+            <a href="../index.html" class="nav-vertical-item" data-index="0" aria-label="Geral" title="Geral"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+            <a href="../energia/energia.html" class="nav-vertical-item active" data-index="1" aria-label="Energia" title="Energia" aria-current="page"><i class="fa-solid fa-bolt" aria-hidden="true"></i></a>
+            <a href="../agua/agua.html" class="nav-vertical-item" data-index="2" aria-label="Água" title="Água"><i class="fa-solid fa-droplet" aria-hidden="true"></i></a>
+            <a href="../atmosfera/atmosfera.html" class="nav-vertical-item" data-index="3" aria-label="Atmosfera" title="Atmosfera"><i class="fa-solid fa-cloud" aria-hidden="true"></i></a>
+            <a href="../alimentos/alimentos.html" class="nav-vertical-item" data-index="4" aria-label="Alimentos" title="Alimentos"><i class="fa-solid fa-burger" aria-hidden="true"></i></a>
+            <a href="../alertas/alertas.html" class="nav-vertical-item alert-item" data-index="5" aria-label="Alertas" title="Alertas"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></a>
+            <a href="../satelites/satelites.html" class="nav-vertical-item" data-index="6" aria-label="Satélites" title="Satélites"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></a>
+        </nav>
+
+        <main class="right-content">
+            <div class="squares-container">
+                <div class="square-row">
+                    <div class="square" data-state-of="energy.solar.state">
+                        <div class="square-corner">PAINÉIS SOLARES</div>
+                        <div class="center-graph">
+                            <div class="progress-ring" data-ring="energy.solar.pct">
+                                <svg aria-hidden="true">
+                                    <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress-ring-fill" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="percentage-text">
+                                    <div class="percentage-number" data-bind="energy.solar.pct" data-fmt="pct">0%</div>
+                                    <div class="percentage-label">ATIVO</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="square-footer"><span data-bind="energy.solar.out" data-fmt="int"></span> / <span data-bind="energy.solar.cap" data-fmt="int"></span> KW</div>
+                    </div>
+                    <div class="square" data-state-of="energy.battery.state">
+                        <div class="square-corner">BATERIA BACKUP</div>
+                        <div class="center-graph">
+                            <div class="progress-ring" data-ring="energy.battery.pct">
+                                <svg aria-hidden="true">
+                                    <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress-ring-fill" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="percentage-text">
+                                    <div class="percentage-number" data-bind="energy.battery.pct" data-fmt="pct">0%</div>
+                                    <div class="percentage-label">CARGA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="square-footer"><span data-bind="energy.battery.kwh" data-fmt="int"></span> KWH</div>
+                    </div>
+                </div>
+                <div class="square-row">
+                    <div class="square" data-state-of="energy.reactor.state">
+                        <div class="square-corner">REATOR NUCLEAR</div>
+                        <div class="center-graph">
+                            <div class="progress-ring" data-ring="energy.reactor.pct">
+                                <svg aria-hidden="true">
+                                    <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress-ring-fill" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="percentage-text">
+                                    <div class="percentage-number" data-bind="energy.reactor.pct" data-fmt="pct">0%</div>
+                                    <div class="percentage-label">POTÊNCIA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="square-footer"><span data-bind="energy.reactor.out" data-fmt="int" data-suffix=" KW"></span><span data-bind="energy.reactor.note" data-fmt="txt"></span></div>
+                    </div>
+                    <div class="square" data-state-of="energy.useState">
+                        <div class="square-corner">CONSUMO TOTAL</div>
+                        <div class="center-graph">
+                            <div class="progress-ring" data-ring="energy.usePct">
+                                <svg aria-hidden="true">
+                                    <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress-ring-fill" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="percentage-text">
+                                    <div class="percentage-number" data-bind="energy.usePct" data-fmt="pct">0%</div>
+                                    <div class="percentage-label">CARGA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="square-footer"><span data-bind="energy.use" data-fmt="int"></span> / <span data-bind="energy.gen" data-fmt="int"></span> KW</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rectangles-container">
+                <div class="rectangle">
+                    <div class="chart-title">DISTRIBUIÇÃO POR MÓDULO</div>
+                    <div class="bars-container">
+                        <div class="bar-item">
+                            <div class="bar-label">
+                                <div class="bar-label-left"><span>MOD - A</span><span>HABITAÇÃO</span></div>
+                                <div class="bar-label-right">
+                                    <span data-bind="energy.mods.0.kw" data-fmt="int" data-suffix=" KW"></span>
+                                    <span data-bind="energy.mods.0.pct" data-fmt="pct"></span>
+                                </div>
+                            </div>
+                            <div class="bar-bg"><div class="bar-fill" data-bar="energy.mods.0.pct"></div></div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">
+                                <div class="bar-label-left"><span>MOD - B</span><span>PESQUISA</span></div>
+                                <div class="bar-label-right">
+                                    <span data-bind="energy.mods.1.kw" data-fmt="int" data-suffix=" KW"></span>
+                                    <span data-bind="energy.mods.1.pct" data-fmt="pct"></span>
+                                </div>
+                            </div>
+                            <div class="bar-bg"><div class="bar-fill" data-bar="energy.mods.1.pct"></div></div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">
+                                <div class="bar-label-left"><span>MOD - C</span><span>AGRICULTURA</span></div>
+                                <div class="bar-label-right">
+                                    <span data-bind="energy.mods.2.kw" data-fmt="int" data-suffix=" KW"></span>
+                                    <span data-bind="energy.mods.2.pct" data-fmt="pct"></span>
+                                </div>
+                            </div>
+                            <div class="bar-bg"><div class="bar-fill" data-bar="energy.mods.2.pct"></div></div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">
+                                <div class="bar-label-left"><span>MOD - D</span><span>ARMAZENAMENTO</span></div>
+                                <div class="bar-label-right">
+                                    <span data-bind="energy.mods.3.kw" data-fmt="int" data-suffix=" KW"></span>
+                                    <span data-bind="energy.mods.3.pct" data-fmt="pct"></span>
+                                </div>
+                            </div>
+                            <div class="bar-bg"><div class="bar-fill" data-bar="energy.mods.3.pct"></div></div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">
+                                <div class="bar-label-left"><span>INFRA</span><span>ESTRUTURA</span></div>
+                                <div class="bar-label-right">
+                                    <span data-bind="energy.mods.4.kw" data-fmt="int" data-suffix=" KW"></span>
+                                    <span data-bind="energy.mods.4.pct" data-fmt="pct"></span>
+                                </div>
+                            </div>
+                            <div class="bar-bg"><div class="bar-fill" data-bar="energy.mods.4.pct"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rectangle">
+                    <div class="chart-title">HISTÓRICO ENERGIA — ÚLTIMAS 24H · KW</div>
+                    <div class="line-chart-container">
+                        <canvas id="energyHistoryChart" role="img" aria-label="Gráfico de linha do consumo de energia em kW ao longo das últimas 24 horas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/telemetry.js"></script>
+    <script src="../js/charts.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="energia.js"></script>
+</body>
+</html>

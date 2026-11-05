@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-green: #4DB04D;
+    --background: #000000;
+}
+
+body {
+    background: var(--background);
+    color: var(--primary-green);
+    min-height: 100vh;
+    font-family: "Geom", sans-serif;
+    overflow-x: hidden;
+}
+
+.topbar {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.logo {
+    font-family: 'Bowlby One', cursive;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--primary-green);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-green);
+}
+
+.main-layout {
+    display: flex;
+    margin-left: 48px;
+    margin-top: 20px;
+    gap: 80px;
+}
+
+.vertical-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}
+
+.right-content {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    margin-right: 48px;
+    margin-top: 23px;
+}
+
+.satellites-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-row {
+    display: flex;
+    gap: 20px;
+}
+
+.satellite-box {
+    flex: 1;
+    border: 3px solid var(--primary-green);
+    padding: 16px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--primary-green);
+}
+
+.nav-btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 6px 0;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: "Geom", sans-serif;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--primary-green);
+    color: var(--background);
+}
+
+.sat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.sat-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sat-title i {
+    font-size: 22px;
+}
+
+.sat-title h2 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sat-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border: 1px solid var(--primary-green);
+}
+
+.info-grid {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    background: rgba(77, 176, 77, 0.05);
+    padding: 10px;
+}
+
+.info-item {
+    flex: 1;
+    text-align: center;
+}
+
+.info-label {
+    font-size: 9px;
+    font-weight: 700;
+    opacity: 0.6;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.signal-container {
+    margin-top: 8px;
+}
+
+.signal-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.signal-bar {
+    width: 100%;
+    height: 6px;
+    background: #1a3a1a;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.signal-fill {
+    height: 100%;
+    background: var(--primary-green);
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+
+.stats-box {
+    flex: 0.9;
+    border: 3px solid var(--primary-green);
+    padding: 16px;
+}
+
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--primary-green);
+    margin-bottom: 12px;
+}
+
+.stats-header i {
+    font-size: 16px;
+}
+
+.stats-header h3 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(77, 176, 77, 0.3);
+    margin: 8px 0;
+}
+
+.comms-box {
+    border: 3px solid var(--primary-green);
+    padding: 16px;
+    min-height: 240px;
+}
+
+.comms-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--primary-green);
+    margin-bottom: 12px;
+}
+
+.comms-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comms-title i {
+    font-size: 14px;
+}
+
+.comms-title h3 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.comms-badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border: 1px solid var(--primary-green);
+}
+
+.comms-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+.comms-table th {
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--primary-green);
+    font-weight: 500;
+}
+
+.comms-table td {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(77, 176, 77, 0.2);
+}
+
+.comms-table tr:last-child td {
+    border-bottom: none;
+}
+
+.status-green {
+    color: var(--primary-green);
+}
+
+/* Estilos para os links de navegação vertical */
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+    text-decoration: none;
+}
+
+.nav-vertical-item:hover {
+    text-decoration: none;
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Faixa verde que vem de fora da tela */
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}

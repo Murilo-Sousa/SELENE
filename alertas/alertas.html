@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>SELENE - Alertas</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="alertas.css">
+    <link rel="stylesheet" href="../responsive.css">
+    <link rel="stylesheet" href="../effects.css">
+</head>
+<body data-page="alertas" data-root="../">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="logo">MONITORAMENTO & ALERTAS</h1>
+        </div>
+
+        <div class="topbar-right">
+            <span class="station">SOL-142</span>
+            <span class="dot"></span>
+            <span id="currentTime">00:00:00</span>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <nav class="vertical-nav" id="verticalNav" aria-label="Navegação principal">
+            <a href="../index.html" class="nav-vertical-item" data-index="0" aria-label="Geral" title="Geral"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+            <a href="../energia/energia.html" class="nav-vertical-item" data-index="1" aria-label="Energia" title="Energia"><i class="fa-solid fa-bolt" aria-hidden="true"></i></a>
+            <a href="../agua/agua.html" class="nav-vertical-item" data-index="2" aria-label="Água" title="Água"><i class="fa-solid fa-droplet" aria-hidden="true"></i></a>
+            <a href="../atmosfera/atmosfera.html" class="nav-vertical-item" data-index="3" aria-label="Atmosfera" title="Atmosfera"><i class="fa-solid fa-cloud" aria-hidden="true"></i></a>
+            <a href="../alimentos/alimentos.html" class="nav-vertical-item" data-index="4" aria-label="Alimentos" title="Alimentos"><i class="fa-solid fa-burger" aria-hidden="true"></i></a>
+            <a href="../alertas/alertas.html" class="nav-vertical-item alert-item active" data-index="5" aria-label="Alertas" title="Alertas" aria-current="page"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></a>
+            <a href="../satelites/satelites.html" class="nav-vertical-item" data-index="6" aria-label="Satélites" title="Satélites"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></a>
+        </nav>
+
+        <main class="right-content">
+            <div class="alerts-container">
+                <div class="alerts-summary">
+                    <div class="summary-card" data-state-of="alerts.critState">
+                        <div class="summary-header">
+                            <i class="fa-solid fa-circle-exclamation summary-icon" aria-hidden="true"></i>
+                            <span class="summary-title">CRÍTICOS</span>
+                        </div>
+                        <div class="summary-number" data-bind="alerts.crit" data-fmt="int" data-tick>0</div>
+                        <div class="summary-footer">
+                            <span class="summary-percent" data-bind="alerts.critPct" data-fmt="pct">0%</span>
+                            <span class="summary-status" data-bind="alerts.critWord">URGENTE</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-card" data-state-of="alerts.warnState">
+                        <div class="summary-header">
+                            <i class="fa-solid fa-triangle-exclamation summary-icon" aria-hidden="true"></i>
+                            <span class="summary-title">ATENÇÃO</span>
+                        </div>
+                        <div class="summary-number" data-bind="alerts.warn" data-fmt="int" data-tick>0</div>
+                        <div class="summary-footer">
+                            <span class="summary-percent" data-bind="alerts.warnPct" data-fmt="pct">0%</span>
+                            <span class="summary-status" data-bind="alerts.warnWord">MONITORAR</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-header">
+                            <i class="fa-solid fa-info-circle summary-icon" aria-hidden="true"></i>
+                            <span class="summary-title">INFORMAÇÃO</span>
+                        </div>
+                        <div class="summary-number" data-bind="alerts.info" data-fmt="int" data-tick>0</div>
+                        <div class="summary-footer">
+                            <span class="summary-percent" data-bind="alerts.infoPct" data-fmt="pct">0%</span>
+                            <span class="summary-status">REGISTRO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alerts-list">
+                    <div class="alerts-header">
+                        <span class="alerts-title">EVENTOS RECENTES</span>
+                        <div class="alert-filters" role="group" aria-label="Filtrar eventos">
+                            <button class="filter-btn active" data-filter="all" aria-pressed="true">TODOS</button>
+                            <button class="filter-btn" data-filter="crit" aria-pressed="false">CRÍTICOS</button>
+                            <button class="filter-btn" data-filter="warn" aria-pressed="false">ATENÇÃO</button>
+                            <button class="filter-btn" data-filter="info" aria-pressed="false">INFO</button>
+                        </div>
+                    </div>
+                    <div class="alerts-table" id="alertsTable" aria-live="polite"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/telemetry.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="alertas.js"></script>
+</body>
+</html>

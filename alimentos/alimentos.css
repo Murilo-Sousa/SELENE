@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-green: #4DB04D;
+    --background: #000000;
+}
+
+body {
+    background: var(--background);
+    color: var(--primary-green);
+    min-height: 100vh;
+    font-family: "Geom", sans-serif;
+    overflow-x: hidden;
+}
+
+.topbar {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.logo {
+    font-family: 'Bowlby One', cursive;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--primary-green);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary-green);
+}
+
+.main-layout {
+    display: flex;
+    margin-left: 48px;
+    margin-top: 20px;
+    gap: 80px;
+}
+
+.vertical-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}
+
+.right-content {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    margin-right: 48px;
+    margin-top: 23px;
+}
+
+.squares-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex: 1;
+}
+
+.square-row {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+}
+
+.square {
+    flex: 1;
+    height: 240px;
+    border: 3px solid var(--primary-green);
+    background: transparent;
+    position: relative;
+    padding: 12px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.square-row-single {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+}
+
+.square-row-single .square {
+    flex: 1;
+}
+
+.square-title {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+.square-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.main-data {
+    text-align: left;
+}
+
+.main-value {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.main-unit {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.progress-bar-container {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background-color: #1a3a1a;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--primary-green);
+    width: 0%;
+    border-radius: 2px;
+}
+
+.cultivos-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cultivo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--primary-green);
+}
+
+.cultivo-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.cultivo-nome {
+    font-size: 11px;
+    font-weight: 700;
+    width: 58px;
+}
+
+.cultivo-area {
+    font-size: 10px;
+    font-weight: 700;
+    width: 45px;
+    text-align: center;
+}
+
+.cultivo-estagio {
+    font-size: 10px;
+    font-weight: 700;
+    width: 45px;
+    text-align: center;
+}
+
+.cultivo-status {
+    font-size: 9px;
+    font-weight: 700;
+    width: 80px;
+    text-align: center;
+    padding: 2px 5px;
+    border: 1px solid var(--primary-green);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cultivo-previsao {
+    font-size: 10px;
+    font-weight: 700;
+    width: 50px;
+    text-align: center;
+}
+
+.cultivo-producao {
+    font-size: 10px;
+    font-weight: 700;
+    width: 55px;
+    text-align: right;
+}
+
+/* Estilos para os links de navegação vertical */
+.nav-vertical-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-green);
+    text-decoration: none;
+}
+
+.nav-vertical-item:hover {
+    text-decoration: none;
+}
+
+.nav-vertical-item i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Faixa verde que vem de fora da tela */
+.nav-vertical-item::before {
+    content: "";
+    position: fixed;
+    left: -120px;
+    width: 120px;
+    height: 44px;
+    background: var(--primary-green);
+    z-index: 1;
+    transition: left 0.5s ease;
+}
+
+.nav-vertical-item:hover::before {
+    left: 0;
+}
+
+.nav-vertical-item:hover i {
+    color: var(--background);
+}
+
+.nav-vertical-item.active {
+    color: var(--background);
+}
+
+.nav-vertical-item.active::before {
+    left: 0;
+}
+
+.nav-vertical-item.active i {
+    color: var(--background);
+}
+
+.nav-vertical-item.alert-item {
+    margin-top: 50px;
+}

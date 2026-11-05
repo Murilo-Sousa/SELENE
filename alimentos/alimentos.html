@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>SELENE - Alimentos</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="alimentos.css">
+    <link rel="stylesheet" href="../responsive.css">
+    <link rel="stylesheet" href="../effects.css">
+</head>
+<body data-page="alimentos" data-root="../">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="logo">PRODUÇÃO & SUSTENTABILIDADE</h1>
+        </div>
+
+        <div class="topbar-right">
+            <span class="station">SOL-142</span>
+            <span class="dot"></span>
+            <span id="currentTime">00:00:00</span>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <nav class="vertical-nav" id="verticalNav" aria-label="Navegação principal">
+            <a href="../index.html" class="nav-vertical-item" data-index="0" aria-label="Geral" title="Geral"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
+            <a href="../energia/energia.html" class="nav-vertical-item" data-index="1" aria-label="Energia" title="Energia"><i class="fa-solid fa-bolt" aria-hidden="true"></i></a>
+            <a href="../agua/agua.html" class="nav-vertical-item" data-index="2" aria-label="Água" title="Água"><i class="fa-solid fa-droplet" aria-hidden="true"></i></a>
+            <a href="../atmosfera/atmosfera.html" class="nav-vertical-item" data-index="3" aria-label="Atmosfera" title="Atmosfera"><i class="fa-solid fa-cloud" aria-hidden="true"></i></a>
+            <a href="../alimentos/alimentos.html" class="nav-vertical-item active" data-index="4" aria-label="Alimentos" title="Alimentos" aria-current="page"><i class="fa-solid fa-burger" aria-hidden="true"></i></a>
+            <a href="../alertas/alertas.html" class="nav-vertical-item alert-item" data-index="5" aria-label="Alertas" title="Alertas"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></a>
+            <a href="../satelites/satelites.html" class="nav-vertical-item" data-index="6" aria-label="Satélites" title="Satélites"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></a>
+        </nav>
+
+        <main class="right-content">
+            <div class="squares-container">
+                <div class="square-row">
+                    <div class="square" data-state-of="food.state">
+                        <div class="square-title">RESERVA TOTAL</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="food.kg" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">KG</span>
+                            </div>
+                            <div class="info-row">
+                                <span>DISPONÍVEL</span>
+                                <span data-bind="food.kg" data-fmt="int" data-suffix=" KG"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="food.pct"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>CAPACIDADE MÁXIMA</span>
+                                <span data-bind="food.cap" data-fmt="int" data-suffix=" KG"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>AUTONOMIA</span>
+                                <span data-bind="food.autonomy" data-fmt="int" data-suffix=" DIAS"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="square" data-state-of="food.effState">
+                        <div class="square-title">PRODUÇÃO AGRÍCOLA</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="food.prod" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">KG/DIA</span>
+                            </div>
+                            <div class="info-row">
+                                <span>PRODUÇÃO DIÁRIA</span>
+                                <span data-bind="food.prod" data-fmt="int" data-suffix=" KG/DIA"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="food.eff"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>META DIÁRIA</span>
+                                <span data-bind="food.target" data-fmt="int" data-suffix=" KG/DIA"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>EFICIÊNCIA</span>
+                                <span data-bind="food.eff" data-fmt="pct"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="square">
+                        <div class="square-title">CONSUMO DIÁRIO</div>
+                        <div class="square-content">
+                            <div class="main-data">
+                                <span class="main-value" data-bind="food.cons" data-fmt="int" data-tick>0</span>
+                                <span class="main-unit">KG/DIA</span>
+                            </div>
+                            <div class="info-row">
+                                <span>CONSUMO TRIPULAÇÃO</span>
+                                <span data-bind="food.crew" data-fmt="int" data-suffix=" KG/DIA"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>PESQUISA</span>
+                                <span data-bind="food.research" data-fmt="int" data-suffix=" KG/DIA"></span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" data-bar="food.consBar"></div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>TOTAL CONSUMO</span>
+                                <span data-bind="food.cons" data-fmt="int" data-suffix=" KG/DIA"></span>
+                            </div>
+                            <div class="info-row">
+                                <span>SALDO DIÁRIO</span>
+                                <span data-bind="food.net" data-fmt="sign0" data-suffix=" KG/DIA"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="square-row-single">
+                    <div class="square" data-state-of="food.effState">
+                        <div class="square-title">CULTIVOS ATIVOS — MÓDULO-C</div>
+                        <div class="square-content" style="width: 100%;">
+                            <div class="cultivos-info">
+                                <div class="cultivo-item" style="border-bottom: 1px solid var(--primary-green); padding-bottom: 4px; margin-bottom: 0;">
+                                    <span class="cultivo-nome" style="font-weight: 500;">CULTURA</span>
+                                    <span class="cultivo-area" style="font-weight: 500;">ÁREA</span>
+                                    <span class="cultivo-estagio" style="font-weight: 500;">ESTÁGIO</span>
+                                    <span class="cultivo-status" style="font-weight: 500; border: none; padding: 0;">STATUS</span>
+                                    <span class="cultivo-previsao" style="font-weight: 500;">PREVISÃO</span>
+                                    <span class="cultivo-producao" style="font-weight: 500;">PRODUÇÃO</span>
+                                </div>
+                                <div class="cultivo-item">
+                                    <span class="cultivo-nome" data-bind="food.crops.0.name" data-fmt="txt"></span>
+                                    <span class="cultivo-area" data-bind="food.crops.0.area" data-fmt="int" data-suffix=" m²"></span>
+                                    <span class="cultivo-estagio" data-bind="food.crops.0.stage" data-fmt="pct"></span>
+                                    <span class="cultivo-status" data-bind="food.crops.0.status" data-fmt="txt"></span>
+                                    <span class="cultivo-previsao" data-bind="food.crops.0.days" data-fmt="int" data-suffix=" dias"></span>
+                                    <span class="cultivo-producao" data-bind="food.crops.0.kg" data-fmt="int" data-suffix=" kg"></span>
+                                </div>
+                                <div class="cultivo-item">
+                                    <span class="cultivo-nome" data-bind="food.crops.1.name" data-fmt="txt"></span>
+                                    <span class="cultivo-area" data-bind="food.crops.1.area" data-fmt="int" data-suffix=" m²"></span>
+                                    <span class="cultivo-estagio" data-bind="food.crops.1.stage" data-fmt="pct"></span>
+                                    <span class="cultivo-status" data-bind="food.crops.1.status" data-fmt="txt"></span>
+                                    <span class="cultivo-previsao" data-bind="food.crops.1.days" data-fmt="int" data-suffix=" dias"></span>
+                                    <span class="cultivo-producao" data-bind="food.crops.1.kg" data-fmt="int" data-suffix=" kg"></span>
+                                </div>
+                                <div class="cultivo-item">
+                                    <span class="cultivo-nome" data-bind="food.crops.2.name" data-fmt="txt"></span>
+                                    <span class="cultivo-area" data-bind="food.crops.2.area" data-fmt="int" data-suffix=" m²"></span>
+                                    <span class="cultivo-estagio" data-bind="food.crops.2.stage" data-fmt="pct"></span>
+                                    <span class="cultivo-status" data-bind="food.crops.2.status" data-fmt="txt"></span>
+                                    <span class="cultivo-previsao" data-bind="food.crops.2.days" data-fmt="int" data-suffix=" dias"></span>
+                                    <span class="cultivo-producao" data-bind="food.crops.2.kg" data-fmt="int" data-suffix=" kg"></span>
+                                </div>
+                                <div class="cultivo-item">
+                                    <span class="cultivo-nome" data-bind="food.crops.3.name" data-fmt="txt"></span>
+                                    <span class="cultivo-area" data-bind="food.crops.3.area" data-fmt="int" data-suffix=" m²"></span>
+                                    <span class="cultivo-estagio" data-bind="food.crops.3.stage" data-fmt="pct"></span>
+                                    <span class="cultivo-status" data-bind="food.crops.3.status" data-fmt="txt"></span>
+                                    <span class="cultivo-previsao" data-bind="food.crops.3.days" data-fmt="int" data-suffix=" dias"></span>
+                                    <span class="cultivo-producao" data-bind="food.crops.3.kg" data-fmt="int" data-suffix=" kg"></span>
+                                </div>
+                                <div class="cultivo-item">
+                                    <span class="cultivo-nome" data-bind="food.crops.4.name" data-fmt="txt"></span>
+                                    <span class="cultivo-area" data-bind="food.crops.4.area" data-fmt="int" data-suffix=" m²"></span>
+                                    <span class="cultivo-estagio" data-bind="food.crops.4.stage" data-fmt="pct"></span>
+                                    <span class="cultivo-status" data-bind="food.crops.4.status" data-fmt="txt"></span>
+                                    <span class="cultivo-previsao" data-bind="food.crops.4.days" data-fmt="int" data-suffix=" dias"></span>
+                                    <span class="cultivo-producao" data-bind="food.crops.4.kg" data-fmt="int" data-suffix=" kg"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/telemetry.js"></script>
+    <script src="../js/core.js"></script>
+</body>
+</html>
