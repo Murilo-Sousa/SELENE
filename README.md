@@ -161,7 +161,3 @@ cada módulo da home é o pior estado entre as métricas que o compõem.
 ## Tecnologias
 
 HTML5 · CSS3 (Grid, Flexbox, variáveis) · JavaScript (ES6+) · Canvas 2D · Font Awesome 6 · Google Fonts · Figma · Claude
-
-## Autor
-
-**Murilo de Melo Sousa** · estudante de Web Design (FIAP) e técnico em Desenvolvimento de Sistemas (SENAI).
